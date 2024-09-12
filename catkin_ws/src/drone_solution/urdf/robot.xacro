@@ -14,8 +14,7 @@
   <xacro:property name="wheel_width" value="0.03"/>
   <xacro:property name="wheel_mass" value="0.025"/>
 
-  <!--<xacro:include filename="/catkin_ws/src/gazebo-line-follower-master/urdf/macros.xacro"/>-->
-  <xacro:include filename="/catkin_ws/src/gazebo-line-follower-master/urdf/materials.xacro"/>
+  <xacro:include filename="/catkin_ws/src/drone_solution/urdf/materials.xacro"/>
 
   <link name='chassis'>
   <inertial name="chassis_inertial">

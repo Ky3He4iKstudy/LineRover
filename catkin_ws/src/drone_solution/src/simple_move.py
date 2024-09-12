@@ -73,11 +73,11 @@ class SimpleMover:
             rospy.logerr("CvBridge Error: {0}".format(e))
             return
         
-        grey_image = cv2.cvtColor(cv_image[SCANLINE:], cv2.COLOR_BGR2GRAY)
+        grey_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
         _, mask = cv2.threshold(grey_image, 15, 255, cv2.THRESH_BINARY)
-        cv_image = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR).THRESH_BINARY_INV)
+        cv_image = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
 
-        y, x = self.center_of_mass(255 - mask)
+        y, x = self.center_of_mass(255 - mask[SCANLINE:])
         y += SCANLINE
         #print(self.target_angle, x, y)
 
