@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <env name="GAZEBO_RESOURCE_PATH" value="$(find drone_scene)"/>
+        <env name="GAZEBO_MODEL_PATH" value="$(find drone_scene)/models"/>
+        <arg name="world_name" value="$(find drone_scene)/worlds/line.world"/>
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="debug" value="false"/>
+    </include>
+    <node pkg="drone_solution"
+          type="simple_move.py"
+          name="simple_move"
+          output="screen">
+    </node>
+    <param name="robot_description" command="xacro $(find drone_solution)/urdf/robot.xacro"/>
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-x -0.04 -y 0.0 -z 1.0 -R 0.0 -P 0.0 -Y -1.57 -unpause -urdf -model robot -param robot_description" 
+        respawn="false" output="screen" />
+</launch>
